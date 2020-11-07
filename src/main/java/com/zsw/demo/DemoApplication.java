@@ -1,15 +1,15 @@
-package com.yuan.demodruid;
+package com.zsw.demo;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.yuan.demodruid.mapper")
-public class DemoDruidApplication {
+@MapperScan("com.zsw.demo.mapper")
+public class DemoApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoDruidApplication.class, args);
+        SpringApplication.run(DemoApplication.class, args);
     }
 
 }

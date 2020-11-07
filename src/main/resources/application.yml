@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: druid, mybatisplus
+
+server:
+  port: 6789
+
+

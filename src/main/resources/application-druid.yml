@@ -2,11 +2,13 @@ spring:
   datasource:
     # 配置数据源
     driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://rm-2ze3qg1crdkv9l4ts4o.mysql.rds.aliyuncs.com:3306/zulin-dev?autoReconnect=true&useUnienabledcode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: zulin
+    password: Hexia8866
+
     # 使用druid连接池
     type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mysql://127.0.0.1:3306/demo_druid?characterEncoding=utf-8&autoReconnect=true&failOverReadOnly=false&useSSL=true
-    username: root
-    password: root
+
     druid:
       # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
       connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
