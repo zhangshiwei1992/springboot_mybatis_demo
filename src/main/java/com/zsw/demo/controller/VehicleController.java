@@ -52,7 +52,7 @@ public class VehicleController {
     @RequestMapping("/list")
     public List<Vehicle> list() {
         List<Vehicle> vehicleList = vehicleService.list(null);
-        System.out.println("vehicleList: " + JSON.toJSON(vehicleList));
+        System.out.println("list: " + JSON.toJSON(vehicleList));
         return vehicleList;
     }
 
@@ -104,7 +104,7 @@ public class VehicleController {
 
         Collection<Vehicle> vehicleList = vehicleService.listByMap(map);
 
-        System.out.println("page: " + JSON.toJSON(vehicleList));
+        System.out.println("listByMap: " + JSON.toJSON(vehicleList));
 
         return vehicleList;
     }
@@ -117,7 +117,7 @@ public class VehicleController {
         Vehicle vehicle = new Vehicle();
         vehicle.setVehicleCode("V20201102000004");
         boolean result = vehicleService.save(vehicle);
-        System.out.println("page: " + result);
+        System.out.println("save: " + result);
     }
 
     /**
@@ -138,7 +138,7 @@ public class VehicleController {
         list.add(vehicle2);
 
         boolean result = vehicleService.saveBatch(list);
-        System.out.println("page: " + result);
+        System.out.println("saveBatch: " + result);
     }
 
     /**
@@ -153,7 +153,7 @@ public class VehicleController {
 
         boolean result = vehicleService.updateById(Vehicle);
 
-        System.out.println("page: " + result);
+        System.out.println("updateById: " + result);
     }
 
     /**
@@ -169,7 +169,7 @@ public class VehicleController {
 
         boolean result = vehicleService.saveOrUpdate(Vehicle);
 
-        System.out.println("page: " + result);
+        System.out.println("saveOrUpdate: " + result);
     }
 
     /**
@@ -178,7 +178,7 @@ public class VehicleController {
     @RequestMapping("/removeById")
     public void removeById() {
         boolean result = vehicleService.removeById(103407L);
-        System.out.println("page: " + result);
+        System.out.println("removeById: " + result);
     }
 
     /**
@@ -191,7 +191,7 @@ public class VehicleController {
         idList.add(103413L);
         boolean result = vehicleService.removeByIds(idList);
 
-        System.out.println("page: " + result);
+        System.out.println("removeByIds: " + result);
     }
 
     /**
@@ -205,7 +205,7 @@ public class VehicleController {
 
         boolean result = vehicleService.removeByMap(map);
 
-        System.out.println("page: " + result);
+        System.out.println("removeByMap: " + result);
     }
 
 }
