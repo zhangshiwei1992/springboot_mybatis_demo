@@ -23,7 +23,7 @@ public class DemoDruidApplicationTests {
     private VehicleService vehicleService;
 
     @Test
-    void selectListTest() {
+    public void selectListTest() {
         List<Vehicle> vehicleList = vehicleService.list(null);
         System.out.println("vehicleList: " + JSON.toJSON(vehicleList));
     }
