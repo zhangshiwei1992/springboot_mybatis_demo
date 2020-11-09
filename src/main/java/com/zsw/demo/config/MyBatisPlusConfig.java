@@ -12,9 +12,7 @@ import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor;
 
 /**
- * @Description: MyBatisPlus配置类
- * @Author: gradual
- * @Date: 2019-01-15 10:16
+ * MyBatisPlus配置类
  */
 @Configuration
 public class MyBatisPlusConfig {
@@ -22,11 +20,7 @@ public class MyBatisPlusConfig {
     private final static Logger logger = LoggerFactory.getLogger(MyBatisPlusConfig.class);
 
     /**
-     * @description: 配置分页插件
-     * @author: gradual
-     * @date: 2019/1/15 10:17
-     * @param: []
-     * @return: com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor
+     * 配置分页插件
      */
     @Bean
     public PaginationInterceptor paginationInterceptor() {
@@ -35,11 +29,7 @@ public class MyBatisPlusConfig {
     }
 
     /**
-     * @description: SQL执行效率插件
-     * @author: gradual
-     * @date: 19-1-24 下午4:59
-     * @param: []
-     * @return: com.baomidou.mybatisplus.extension.plugins.PerformanceInterceptor
+     * SQL执行效率插件
      */
     @Bean
     @Profile({ "test" }) // 设置 dev test 环境开启
@@ -49,9 +39,6 @@ public class MyBatisPlusConfig {
 
     /**
      * 逻辑删除用
-     *
-     * @author David Hong
-     * @return com.baomidou.mybatisplus.core.injector.ISqlInjector
      */
     @Bean
     public ISqlInjector sqlInjector() {
