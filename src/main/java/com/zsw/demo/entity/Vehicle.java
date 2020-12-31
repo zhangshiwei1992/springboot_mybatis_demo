@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 
 /**
@@ -21,9 +23,6 @@ import lombok.experimental.Accessors;
  * @author zhangshiwei
  * @since 2020-10-22
  */
-@Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 @TableName("t_vehicle")
 public class Vehicle extends Model<Vehicle> {
 
@@ -152,4 +151,180 @@ public class Vehicle extends Model<Vehicle> {
         return this.id;
     }
 
+    @Override
+    public String toString() {
+        return "Vehicle{" + "id=" + id + ", vehicleCode='" + vehicleCode + '\'' + ", vehicleProperty='"
+            + vehicleProperty + '\'' + ", orderCode='" + orderCode + '\'' + ", corganCode='" + corganCode + '\''
+            + ", organName='" + organName + '\'' + ", vehicleBrandId=" + vehicleBrandId + ", vehicleBrandName='"
+            + vehicleBrandName + '\'' + ", vehicleVendorId=" + vehicleVendorId + ", vehicleVendorName='"
+            + vehicleVendorName + '\'' + ", vehicleSeriesId=" + vehicleSeriesId + ", vehicleSeriesName='"
+            + vehicleSeriesName + '\'' + ", vehicleTypeId=" + vehicleTypeId + ", vehicleTypeName='" + vehicleTypeName
+            + '\'' + ", vehicleColor='" + vehicleColor + '\'' + ", isDeleted='" + isDeleted + '\'' + ", creator='"
+            + creator + '\'' + ", modifier='" + modifier + '\'' + ", gmtCreated=" + gmtCreated + ", gmtModified="
+            + gmtModified + '}';
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setVehicleCode(String vehicleCode) {
+        this.vehicleCode = vehicleCode;
+    }
+
+    public void setVehicleProperty(String vehicleProperty) {
+        this.vehicleProperty = vehicleProperty;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public void setCorganCode(String corganCode) {
+        this.corganCode = corganCode;
+    }
+
+    public void setOrganName(String organName) {
+        this.organName = organName;
+    }
+
+    public void setVehicleBrandId(Long vehicleBrandId) {
+        this.vehicleBrandId = vehicleBrandId;
+    }
+
+    public void setVehicleBrandName(String vehicleBrandName) {
+        this.vehicleBrandName = vehicleBrandName;
+    }
+
+    public void setVehicleVendorId(Long vehicleVendorId) {
+        this.vehicleVendorId = vehicleVendorId;
+    }
+
+    public void setVehicleVendorName(String vehicleVendorName) {
+        this.vehicleVendorName = vehicleVendorName;
+    }
+
+    public void setVehicleSeriesId(Long vehicleSeriesId) {
+        this.vehicleSeriesId = vehicleSeriesId;
+    }
+
+    public void setVehicleSeriesName(String vehicleSeriesName) {
+        this.vehicleSeriesName = vehicleSeriesName;
+    }
+
+    public void setVehicleTypeId(Long vehicleTypeId) {
+        this.vehicleTypeId = vehicleTypeId;
+    }
+
+    public void setVehicleTypeName(String vehicleTypeName) {
+        this.vehicleTypeName = vehicleTypeName;
+    }
+
+    public void setVehicleColor(String vehicleColor) {
+        this.vehicleColor = vehicleColor;
+    }
+
+    public void setIsDeleted(String isDeleted) {
+        this.isDeleted = isDeleted;
+    }
+
+    public void setCreator(String creator) {
+        this.creator = creator;
+    }
+
+    public void setModifier(String modifier) {
+        this.modifier = modifier;
+    }
+
+    public void setGmtCreated(Date gmtCreated) {
+        this.gmtCreated = gmtCreated;
+    }
+
+    public void setGmtModified(Date gmtModified) {
+        this.gmtModified = gmtModified;
+    }
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getVehicleCode() {
+        return vehicleCode;
+    }
+
+    public String getVehicleProperty() {
+        return vehicleProperty;
+    }
+
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    public String getCorganCode() {
+        return corganCode;
+    }
+
+    public String getOrganName() {
+        return organName;
+    }
+
+    public Long getVehicleBrandId() {
+        return vehicleBrandId;
+    }
+
+    public String getVehicleBrandName() {
+        return vehicleBrandName;
+    }
+
+    public Long getVehicleVendorId() {
+        return vehicleVendorId;
+    }
+
+    public String getVehicleVendorName() {
+        return vehicleVendorName;
+    }
+
+    public Long getVehicleSeriesId() {
+        return vehicleSeriesId;
+    }
+
+    public String getVehicleSeriesName() {
+        return vehicleSeriesName;
+    }
+
+    public Long getVehicleTypeId() {
+        return vehicleTypeId;
+    }
+
+    public String getVehicleTypeName() {
+        return vehicleTypeName;
+    }
+
+    public String getVehicleColor() {
+        return vehicleColor;
+    }
+
+    public String getIsDeleted() {
+        return isDeleted;
+    }
+
+    public String getCreator() {
+        return creator;
+    }
+
+    public String getModifier() {
+        return modifier;
+    }
+
+    public Date getGmtCreated() {
+        return gmtCreated;
+    }
+
+    public Date getGmtModified() {
+        return gmtModified;
+    }
 }

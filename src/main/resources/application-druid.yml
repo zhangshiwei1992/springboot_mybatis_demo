@@ -2,9 +2,13 @@ spring:
   datasource:
     # 配置数据源
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://rm-2ze3qg1crdkv9l4ts4o.mysql.rds.aliyuncs.com:3306/zulin-dev?autoReconnect=true&useUnienabledcode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
-    username: zulin
-    password: Hexia8866
+    url: jdbc:mysql://47.104.181.220:3306/wei_test?autoReconnect=true&useUnienabledcode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: 35608321
+
+  #     url: jdbc:mysql://rm-2ze3qg1crdkv9l4ts4o.mysql.rds.aliyuncs.com:3306/zulin-dev?autoReconnect=true&useUnienabledcode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull
+  #     username: zulin
+  #     password: Hexia8866
 
     # 使用druid连接池
     type: com.alibaba.druid.pool.DruidDataSource

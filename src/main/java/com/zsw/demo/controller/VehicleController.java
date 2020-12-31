@@ -1,7 +1,9 @@
 package com.zsw.demo.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,17 +33,19 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
 
+    private static final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+
     @RequestMapping("/test")
     public String test() {
         return "hello world";
     }
 
     /**
-     * 根据ID获取用户信息
+     * 根据ID获取信息
      */
     @RequestMapping("/getById")
     public Vehicle getById() {
-        Vehicle vehicle = vehicleService.getById(103407L);
+        Vehicle vehicle = vehicleService.getById(1L);
         System.out.println("getById: " + JSON.toJSON(vehicle));
         return vehicle;
     }
@@ -94,43 +98,46 @@ public class VehicleController {
     }
 
     /**
-     * 根据指定字段查询用户信息集合
+     * 根据指定字段查询信息集合
      */
     @RequestMapping("/getListMap")
     public Collection<Vehicle> getListMap() {
         Map<String, Object> map = new HashMap<>();
         // kay是字段名 value是字段值
-        map.put("status", 5);
+        map.put("status", 2);
 
         Collection<Vehicle> vehicleList = vehicleService.listByMap(map);
 
         System.out.println("listByMap: " + JSON.toJSON(vehicleList));
-
         return vehicleList;
     }
 
     /**
-     * 新增用户信息
+     * 新增信息
      */
     @RequestMapping("/save")
-    public void save() {
+    public String save() {
         Vehicle vehicle = new Vehicle();
-        vehicle.setVehicleCode("V20201102000004");
+        String vehicleCode = dateFormat.format(new Date());
+        vehicle.setVehicleCode("V" + vehicleCode);
         boolean result = vehicleService.save(vehicle);
         System.out.println("save: " + result);
+        return "save result: " + result;
     }
 
     /**
-     * 批量新增用户信息
+     * 批量新增信息
      */
     @RequestMapping("/saveBatch")
-    public void saveBatch() {
+    public String saveBatch() {
         //创建对象
         Vehicle vehicle1 = new Vehicle();
-        vehicle1.setVehicleCode("V20201102000002");
+        String vehicleCode1 = dateFormat.format(new Date());
+        vehicle1.setVehicleCode("V" + vehicleCode1);
 
         Vehicle vehicle2 = new Vehicle();
-        vehicle2.setVehicleCode("V20201102000003");
+        String vehicleCode2 = dateFormat.format(new Date());
+        vehicle2.setVehicleCode("V" + vehicleCode2);
 
         // 批量保存
         List<Vehicle> list = new ArrayList<>();
@@ -139,73 +146,86 @@ public class VehicleController {
 
         boolean result = vehicleService.saveBatch(list);
         System.out.println("saveBatch: " + result);
+
+        return "saveBatch result: " + result;
     }
 
     /**
-     * 更新用户信息
+     * 更新信息
      */
     @RequestMapping("/updateInfo")
-    public void updateInfo() {
+    public String updateInfo() {
         //根据实体中的ID去更新,其他字段如果值为null则不会更新该字段,参考yml配置文件
-        Vehicle Vehicle = new Vehicle();
-        Vehicle.setId(103407L);
-        Vehicle.setVehicleCode("V20201102000002");
+        Vehicle vehicleCondition = new Vehicle();
+        vehicleCondition.setId(1L);
 
-        boolean result = vehicleService.updateById(Vehicle);
+        String vehicleCode = dateFormat.format(new Date());
+        vehicleCondition.setVehicleCode("V" + vehicleCode);
 
+        boolean result = vehicleService.updateById(vehicleCondition);
         System.out.println("updateById: " + result);
+
+        return "updateById result: " + result;
     }
 
     /**
-     * 新增或者更新用户信息
+     * 新增或者更新信息
      */
     @RequestMapping("/saveOrUpdateInfo")
-    public void saveOrUpdate() {
+    public String saveOrUpdate() {
         // 传入的实体类Vehicle中ID为null就会新增(ID自增)
         // 实体类ID值存在,如果数据库存在ID就会更新,如果不存在就会新增
-        Vehicle Vehicle = new Vehicle();
-        Vehicle.setId(103407L);
-        Vehicle.setVehicleCode("V20201102000001");
+        Vehicle vehicleCondition = new Vehicle();
+        vehicleCondition.setId(2L);
 
-        boolean result = vehicleService.saveOrUpdate(Vehicle);
+        String vehicleCode = dateFormat.format(new Date());
+        vehicleCondition.setVehicleCode("V" + vehicleCode);
 
+        boolean result = vehicleService.saveOrUpdate(vehicleCondition);
         System.out.println("saveOrUpdate: " + result);
+
+        return "saveOrUpdate result: " + result;
     }
 
     /**
-     * 根据ID删除用户信息
+     * 根据ID删除信息
      */
     @RequestMapping("/removeById")
-    public void removeById() {
-        boolean result = vehicleService.removeById(103407L);
+    public String removeById() {
+        boolean result = vehicleService.removeById(3L);
         System.out.println("removeById: " + result);
+
+        return "removeById result: " + result;
     }
 
     /**
-     * 根据ID批量删除用户信息
+     * 根据ID批量删除信息
      */
     @RequestMapping("/removeByIds")
-    public void removeByIds() {
+    public String removeByIds() {
         List<Long> idList = new ArrayList<>();
-        idList.add(103408L);
-        idList.add(103413L);
-        boolean result = vehicleService.removeByIds(idList);
+        idList.add(1L);
+        idList.add(2L);
 
+        boolean result = vehicleService.removeByIds(idList);
         System.out.println("removeByIds: " + result);
+
+        return "removeByIds result: " + result;
     }
 
     /**
-     * 根据指定字段删除用户信息
+     * 根据指定字段删除信息
      */
     @RequestMapping("/removeByMap")
-    public void removeByMap() {
+    public String removeByMap() {
         // kay是字段名 value是字段值
         Map<String, Object> map = new HashMap<>();
-        map.put("id", "103407");
+        map.put("id", "1");
 
         boolean result = vehicleService.removeByMap(map);
-
         System.out.println("removeByMap: " + result);
+
+        return "removeByMap result: " + result;
     }
 
 }
