@@ -5,7 +5,7 @@ spring:
   redis:
     host: 47.104.181.220
     port: 6379
-    timeout: 3000 # 连接超时时间ms
+    timeout: 4000 # 连接超时时间ms
 
 server:
   port: 6789

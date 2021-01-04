@@ -1,12 +1,12 @@
 package com.zsw.demo.redis;
 
-import com.dist.entity.UserEntity;
-import com.dist.util.RedisUtil;
+import com.zsw.demo.entity.Vehicle;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -16,33 +16,44 @@ import java.util.Date;
 @RequestMapping("/redis")
 @RestController
 public class RedisController {
+    /**
+     * redis中存储的默认过期时间60s
+     */
+    private static int REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND = 60;
 
-    private static int ExpireTime = 60; // redis中存储的过期时间60s
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
 
     @Resource
     private RedisUtil redisUtil;
 
-    @RequestMapping("set")
-    public boolean redisset(String key, String value) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(Long.valueOf(1));
-        userEntity.setGuid(String.valueOf(1));
-        userEntity.setName("zhangsan");
-        userEntity.setAge(String.valueOf(20));
-        userEntity.setCreateTime(new Date());
-
-        // return redisUtil.set(key,userEntity,ExpireTime);
-
-        return redisUtil.set(key, value);
+    @RequestMapping("/set")
+    public boolean redisSet(String key, String value) {
+        boolean result = redisUtil.set(key, value);
+        System.out.println("RedisController redisSet : K - " + key + ", V - " + value + ", result : " + result);
+        return result;
     }
 
-    @RequestMapping("get")
-    public Object redisget(String key) {
-        return redisUtil.get(key);
+    @RequestMapping("/redisSetVehicle")
+    public boolean redisSetVehicle(String key, String value) {
+        Vehicle vehicle = new Vehicle();
+        String vehicleCode = DATE_FORMAT.format(new Date());
+        vehicle.setVehicleCode("V" + vehicleCode);
+        boolean result = redisUtil.set(key, vehicle, REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND);
+        System.out.println("RedisController redisSetVehicle : K - " + key + ", V - " + value + ", result : " + result);
+        return result;
+    }
+
+    @RequestMapping("/get")
+    public Object redisGet(String key) {
+        Object result = redisUtil.get(key);
+        System.out.println("RedisController redisGet : K - " + key + ", result : " + result);
+        return result;
     }
 
     @RequestMapping("expire")
     public boolean expire(String key) {
-        return redisUtil.expire(key, ExpireTime);
+        boolean result = redisUtil.expire(key, REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND);
+        System.out.println("RedisController expire : K - " + key + ", result : " + result);
+        return result;
     }
 }

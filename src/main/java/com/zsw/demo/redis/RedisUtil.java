@@ -1,6 +1,7 @@
 package com.zsw.demo.redis;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.BoundListOperations;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
@@ -23,6 +24,22 @@ public class RedisUtil {
         this.redisTemplate = redisTemplate;
     }
 
+    /**
+     * 普通缓存放入
+     *
+     * @param key 键
+     * @param value 值
+     * @return true成功 false失败
+     */
+    public boolean set(String key, Object value) {
+        try {
+            redisTemplate.opsForValue().set(key, value);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
     /**
      * 指定缓存失效时间
      * 
@@ -94,22 +111,7 @@ public class RedisUtil {
         return key == null ? null : redisTemplate.opsForValue().get(key);
     }
 
-    /**
-     * 普通缓存放入
-     * 
-     * @param key 键
-     * @param value 值
-     * @return true成功 false失败
-     */
-    public boolean set(String key, Object value) {
-        try {
-            redisTemplate.opsForValue().set(key, value);
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
-        }
-    }
+
 
     /**
      * 普通缓存放入并设置时间
