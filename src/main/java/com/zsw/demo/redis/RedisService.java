@@ -15,12 +15,12 @@ import java.util.concurrent.TimeUnit;
  * redisTemplate封装 redis类
  */
 @Component
-public class RedisUtil {
+public class RedisService {
 
     @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
-    public RedisUtil(RedisTemplate<String, Object> redisTemplate) {
+    public RedisService(RedisTemplate<String, Object> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
@@ -89,7 +89,6 @@ public class RedisUtil {
      * 
      * @param key 可以传一个值 或多个
      */
-    @SuppressWarnings("unchecked")
     public void del(String... key) {
         if (key != null && key.length > 0) {
             if (key.length == 1) {

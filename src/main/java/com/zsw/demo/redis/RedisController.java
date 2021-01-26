@@ -24,11 +24,11 @@ public class RedisController {
     private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyyMMddHHmmss");
 
     @Resource
-    private RedisUtil redisUtil;
+    private RedisService redisService;
 
     @RequestMapping("/set")
     public boolean redisSet(String key, String value) {
-        boolean result = redisUtil.set(key, value);
+        boolean result = redisService.set(key, value);
         System.out.println("RedisController redisSet : K - " + key + ", V - " + value + ", result : " + result);
         return result;
     }
@@ -38,21 +38,21 @@ public class RedisController {
         Vehicle vehicle = new Vehicle();
         String vehicleCode = DATE_FORMAT.format(new Date());
         vehicle.setVehicleCode("V" + vehicleCode);
-        boolean result = redisUtil.set(key, vehicle, REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND);
+        boolean result = redisService.set(key, vehicle, REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND);
         System.out.println("RedisController redisSetVehicle : K - " + key + ", V - " + value + ", result : " + result);
         return result;
     }
 
     @RequestMapping("/get")
     public Object redisGet(String key) {
-        Object result = redisUtil.get(key);
+        Object result = redisService.get(key);
         System.out.println("RedisController redisGet : K - " + key + ", result : " + result);
         return result;
     }
 
-    @RequestMapping("expire")
+    @RequestMapping("/expire")
     public boolean expire(String key) {
-        boolean result = redisUtil.expire(key, REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND);
+        boolean result = redisService.expire(key, REDIS_DEFAULT_EXPIRE_TIME_SIXTY_SECOND);
         System.out.println("RedisController expire : K - " + key + ", result : " + result);
         return result;
     }
